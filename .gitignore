@@ -1,0 +1,35 @@
+# Node
+node_modules/
+dashboard/node_modules/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# JSON exports (generated — run export_silver_to_json.py to regenerate)
+data/silver/*.json
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Vite build output
+dashboard/dist/
+dashboard/.vite/
