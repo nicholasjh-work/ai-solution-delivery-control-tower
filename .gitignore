@@ -33,3 +33,5 @@ data/silver/*.json
 # Vite build output
 dashboard/dist/
 dashboard/.vite/
+docs/resume_translation.md
+docs/interview_talk_track.md
