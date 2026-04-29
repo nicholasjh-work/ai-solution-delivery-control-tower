@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import {
+  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
+  ScatterChart, Scatter, CartesianGrid, Cell,
+} from "recharts";
 
 // ── Data loading ──────────────────────────────────────────────────────────────
 
@@ -122,6 +126,7 @@ const TABS = [
   "Model Health",
   "SLA Compliance",
   "Governance",
+  "Business Partner Portfolio",
 ];
 
 function TabBar({ active, onChange }) {
@@ -413,6 +418,232 @@ function GovernanceTab({ governance }) {
   );
 }
 
+// ── Business Partner Portfolio tab ───────────────────────────────────────────
+
+const RISK_COLOUR_MAP = {
+  Critical: "#dc2626",
+  High:     "#ea580c",
+  Medium:   "#ca8a04",
+  Low:      "#16a34a",
+};
+
+const HANDOFF_COLOUR = {
+  "Not Ready":   "bg-slate-100   text-slate-600",
+  "Ready":       "bg-yellow-100  text-yellow-800",
+  "In Delivery": "bg-blue-100    text-blue-800",
+  "Live":        "bg-emerald-100 text-emerald-800",
+};
+
+function BpPortfolioTab({ bp }) {
+  // 1. Demand by function: count of use cases
+  const demandByFunction = Object.entries(
+    bp.reduce((acc, r) => {
+      acc[r.business_function] = (acc[r.business_function] ?? 0) + 1;
+      return acc;
+    }, {})
+  )
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count);
+
+  // 2. Value hypothesis by BU: sum of estimated_value_usd
+  const valueByBu = Object.entries(
+    bp.reduce((acc, r) => {
+      acc[r.business_function] = (acc[r.business_function] ?? 0) + Number(r.estimated_value_usd);
+      return acc;
+    }, {})
+  )
+    .map(([name, value]) => ({ name, value: Math.round(value / 1000) }))
+    .sort((a, b) => b.value - a.value);
+
+  // 3. Scatter: feasibility vs org readiness, coloured by risk tier
+  const scatterData = bp.map((r) => ({
+    x: r.feasibility_score,
+    y: r.organizational_readiness_score,
+    name: r.business_unit,
+    risk: r.risk_tier,
+    fn: r.business_function,
+  }));
+
+  // 4. Reuse candidates
+  const reuseCandidates = bp.filter((r) => r.reuse_candidate_flag);
+
+  // 5. Ready for handoff (Ready or In Delivery)
+  const handoffReady = bp.filter(
+    (r) => r.delivery_handoff_status === "Ready" || r.delivery_handoff_status === "In Delivery"
+  );
+
+  // 6. Strategic risk: High/Critical + feasibility <= 2
+  const atRisk = bp.filter((r) => r.strategic_risk_flag);
+
+  const totalValue = bp.reduce((s, r) => s + Number(r.estimated_value_usd), 0);
+
+  return (
+    <>
+      {/* KPI strip */}
+      <div className="mb-6 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-6">
+        <KpiCard label="Total Initiatives"      value={bp.length} />
+        <KpiCard label="Est. Portfolio Value"   value={fmtUsd(totalValue)} sub="synthetic" />
+        <KpiCard label="Reuse Candidates"       value={reuseCandidates.length} />
+        <KpiCard label="Ready for Handoff"      value={handoffReady.length} />
+        <KpiCard label="Live"                   value={bp.filter(r => r.delivery_handoff_status === "Live").length} />
+        <KpiCard label="Strategic Risk"         value={atRisk.length} sub="High/Critical + low feasibility" />
+      </div>
+
+      {/* Charts row */}
+      <div className="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
+
+        {/* Demand by function */}
+        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
+            Business Demand by Function
+          </p>
+          <ResponsiveContainer width="100%" height={180}>
+            <BarChart data={demandByFunction} layout="vertical" margin={{ left: 8, right: 16 }}>
+              <XAxis type="number" tick={{ fontSize: 11 }} allowDecimals={false} />
+              <YAxis type="category" dataKey="name" width={90} tick={{ fontSize: 11 }} />
+              <Tooltip formatter={(v) => [v, "Use Cases"]} />
+              <Bar dataKey="count" fill="#6366f1" radius={[0, 3, 3, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Value hypothesis by function */}
+        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
+            Est. Value by Function ($000s)
+          </p>
+          <ResponsiveContainer width="100%" height={180}>
+            <BarChart data={valueByBu} layout="vertical" margin={{ left: 8, right: 16 }}>
+              <XAxis type="number" tick={{ fontSize: 11 }} />
+              <YAxis type="category" dataKey="name" width={90} tick={{ fontSize: 11 }} />
+              <Tooltip formatter={(v) => [`$${v}K`, "Est. Value"]} />
+              <Bar dataKey="value" fill="#0ea5e9" radius={[0, 3, 3, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Feasibility vs Readiness scatter */}
+        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
+            Feasibility vs. Org Readiness
+          </p>
+          <p className="mb-2 text-xs text-slate-400">Colour = risk tier</p>
+          <ResponsiveContainer width="100%" height={180}>
+            <ScatterChart margin={{ top: 4, right: 8, bottom: 4, left: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+              <XAxis dataKey="x" type="number" domain={[0, 6]} label={{ value: "Feasibility", position: "insideBottom", offset: -2, fontSize: 10 }} tick={{ fontSize: 10 }} />
+              <YAxis dataKey="y" type="number" domain={[0, 6]} label={{ value: "Org Readiness", angle: -90, position: "insideLeft", fontSize: 10 }} tick={{ fontSize: 10 }} />
+              <Tooltip
+                content={({ payload }) => {
+                  if (!payload?.length) return null;
+                  const d = payload[0].payload;
+                  return (
+                    <div className="rounded bg-white p-2 text-xs shadow border border-slate-200">
+                      <p className="font-semibold">{d.fn}</p>
+                      <p>Feasibility: {d.x} | Readiness: {d.y}</p>
+                      <p>Risk: {d.risk}</p>
+                    </div>
+                  );
+                }}
+              />
+              <Scatter data={scatterData} isAnimationActive={false}>
+                {scatterData.map((d, i) => (
+                  <Cell key={i} fill={RISK_COLOUR_MAP[d.risk] ?? "#94a3b8"} />
+                ))}
+              </Scatter>
+            </ScatterChart>
+          </ResponsiveContainer>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {Object.entries(RISK_COLOUR_MAP).map(([tier, colour]) => (
+              <span key={tier} className="flex items-center gap-1 text-xs text-slate-600">
+                <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ backgroundColor: colour }} />
+                {tier}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Reuse candidates */}
+      <Section title="Reuse Candidates">
+        <Table
+          rows={reuseCandidates}
+          keyFn={(r) => r.bp_id}
+          cols={[
+            { key: "business_function",         label: "Function" },
+            { key: "business_unit",             label: "Business Unit" },
+            { key: "recommended_solution_pattern", label: "Solution Pattern" },
+            { key: "delivery_handoff_status",   label: "Status",
+              render: (r) => <Badge label={r.delivery_handoff_status} colourClass={HANDOFF_COLOUR[r.delivery_handoff_status]} /> },
+            { key: "success_metric",            label: "Success Metric",
+              render: (r) => <span className="block max-w-xs truncate text-xs" title={r.success_metric}>{r.success_metric}</span> },
+          ]}
+        />
+      </Section>
+
+      {/* Ready for handoff */}
+      <Section title="Initiatives Ready for Delivery Handoff">
+        {handoffReady.length === 0
+          ? <p className="text-sm text-slate-500">No initiatives currently in Ready or In Delivery status.</p>
+          : (
+            <Table
+              rows={handoffReady}
+              keyFn={(r) => r.bp_id}
+              cols={[
+                { key: "business_function",   label: "Function" },
+                { key: "business_unit",       label: "Business Unit" },
+                { key: "business_problem",    label: "Business Problem",
+                  render: (r) => <span className="block max-w-sm truncate text-xs" title={r.business_problem}>{r.business_problem}</span> },
+                { key: "estimated_value_usd", label: "Est. Value",
+                  render: (r) => fmtUsd(Number(r.estimated_value_usd)) },
+                { key: "delivery_handoff_status", label: "Status",
+                  render: (r) => <Badge label={r.delivery_handoff_status} colourClass={HANDOFF_COLOUR[r.delivery_handoff_status]} /> },
+                { key: "roadmap_quarter",     label: "Quarter" },
+                { key: "risk_tier",           label: "Risk",
+                  render: (r) => <Badge label={r.risk_tier} colourClass={
+                    r.risk_tier === "Critical" ? "bg-red-100 text-red-800" :
+                    r.risk_tier === "High"     ? "bg-orange-100 text-orange-800" :
+                    r.risk_tier === "Medium"   ? "bg-yellow-100 text-yellow-800" :
+                    "bg-slate-100 text-slate-600"
+                  } /> },
+              ]}
+            />
+          )
+        }
+      </Section>
+
+      {/* Strategic risk */}
+      <Section title="Strategic Initiatives at Risk">
+        <p className="mb-3 text-xs text-slate-500">
+          Defined as risk tier High or Critical with feasibility score of 2 or below.
+          These require active business partner intervention before roadmap commitment.
+        </p>
+        {atRisk.length === 0
+          ? <p className="text-sm text-emerald-600 font-medium">No initiatives meet the at-risk criteria.</p>
+          : (
+            <Table
+              rows={atRisk}
+              keyFn={(r) => r.bp_id}
+              cols={[
+                { key: "business_function",   label: "Function" },
+                { key: "business_unit",       label: "Business Unit" },
+                { key: "business_problem",    label: "Business Problem",
+                  render: (r) => <span className="block max-w-sm truncate text-xs" title={r.business_problem}>{r.business_problem}</span> },
+                { key: "risk_tier",           label: "Risk Tier",
+                  render: (r) => <Badge label={r.risk_tier} colourClass="bg-red-100 text-red-800" /> },
+                { key: "feasibility_score",   label: "Feasibility (1-5)" },
+                { key: "organizational_readiness_score", label: "Org Readiness (1-5)" },
+                { key: "value_hypothesis",    label: "Value Hypothesis",
+                  render: (r) => <span className="block max-w-sm truncate text-xs" title={r.value_hypothesis}>{r.value_hypothesis}</span> },
+              ]}
+            />
+          )
+        }
+      </Section>
+    </>
+  );
+}
+
 // ── Root ──────────────────────────────────────────────────────────────────────
 
 export default function App() {
@@ -427,9 +658,10 @@ export default function App() {
       loadJson("model_health.json"),
       loadJson("sla_compliance.json"),
       loadJson("governance_status.json"),
+      loadJson("bp_portfolio.json"),
     ])
-      .then(([exec, portfolio, modelHealth, sla, governance]) =>
-        setData({ exec, portfolio, modelHealth, sla, governance })
+      .then(([exec, portfolio, modelHealth, sla, governance, bp]) =>
+        setData({ exec, portfolio, modelHealth, sla, governance, bp })
       )
       .catch((e) => setError(e.message));
   }, []);
@@ -455,7 +687,7 @@ export default function App() {
             <h1 className="text-xl font-bold tracking-tight text-slate-900">
               AI Solution Delivery Control Tower
             </h1>
-            <p className="text-xs text-slate-400 mt-0.5">Portfolio · Governance · Model Health · SLA</p>
+            <p className="text-xs text-slate-400 mt-0.5">Portfolio · Governance · Model Health · SLA · Business Partner</p>
           </div>
           <span className="rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700">
             Synthetic Data — Portfolio Project
@@ -490,6 +722,11 @@ export default function App() {
         {tab === "Governance" && (
           <Section title="Governance Review Status">
             <GovernanceTab governance={data.governance} />
+          </Section>
+        )}
+        {tab === "Business Partner Portfolio" && (
+          <Section title="Data & AI Business Partner Portfolio">
+            <BpPortfolioTab bp={data.bp} />
           </Section>
         )}
       </main>

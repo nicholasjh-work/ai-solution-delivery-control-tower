@@ -59,10 +59,11 @@ Nicholas Hidalgo | Portfolio Project | Synthetic Data
 - No joins; no aggregation
 
 ### silver
-- Six analytical views; each joins multiple staging views
+- Seven analytical views; six join multiple staging views, one reads directly from a clean raw table
 - Business logic defined and documented in `docs/GOVERNANCE_MODEL.md`
-- Derived columns: `health_status`, `gate_status`, `days_over_sla`, `breach_severity`, `review_health`
+- Derived columns: `health_status`, `gate_status`, `days_over_sla`, `breach_severity`, `review_health`, `composite_readiness_score`, `handoff_ready_flag`, `strategic_risk_flag`
 - No DDL tables; no stored procedures; no materialized views
+- Exception: `v_bp_portfolio` reads `raw.dim_bp_portfolio` directly with no staging layer, because the table is clean at insert time and has no dirty-data conformance requirements
 
 ### audit
 - `run_log`: pipeline execution history

@@ -141,6 +141,27 @@ Each CTE joins its fact/dim tables back to business_unit via stg_dim_ai_use_case
 
 ---
 
+### v_bp_portfolio
+
+```
+raw.dim_bp_portfolio                 — sole source, no staging layer
+```
+
+This view reads directly from `raw.dim_bp_portfolio`. The table is populated via
+`sql/bp_portfolio.sql` with clean, validated data at insert time. No staging
+conformance layer is interposed because the table has no dirty-data risk: all
+values are explicitly typed, constrained, and inserted from authoritative seed data
+rather than extracted from an external source system.
+
+**Derived columns:**
+- `composite_readiness_score`: ROUND((feasibility_score + organizational_readiness_score) / 2.0, 1)
+- `handoff_ready_flag`: TRUE when delivery_handoff_status IN ('Ready', 'In Delivery', 'Live')
+- `strategic_risk_flag`: TRUE when risk_tier IN ('High', 'Critical') AND feasibility_score <= 2
+
+**Exported as:** `data/silver/bp_portfolio.json` (14 rows)
+
+---
+
 ## Audit Layer
 
 `audit.dq_check_results` and `audit.reconciliation_results` are written by:

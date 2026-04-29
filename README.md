@@ -1,4 +1,5 @@
 <p align="center">
+
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nicholasjh-work/nicholasjh-work/main/nh-logo-light.svg">
     <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/nicholasjh-work/nicholasjh-work/main/nh-logo-dark.svg">
@@ -13,7 +14,7 @@
   <a href="#local-setup"><img src="https://img.shields.io/badge/Demo-Local_Setup-4f46e5?style=for-the-badge&logoColor=white" alt="Demo"></a>
   <img src="https://img.shields.io/badge/License-MIT-0ea5e9?style=for-the-badge" alt="License">
   <img src="https://img.shields.io/badge/DQ_Checks-24_Passing-16a34a?style=for-the-badge" alt="DQ Checks">
-  <img src="https://img.shields.io/badge/Silver_Views-6-7c3aed?style=for-the-badge" alt="Silver Views">
+  <img src="https://img.shields.io/badge/Silver_Views-7-7c3aed?style=for-the-badge" alt="Silver Views">
 </p>
 
 <p align="center">
@@ -32,32 +33,38 @@
 <table>
   <tr>
     <td width="50%" valign="top">
-      <h3>📊 Portfolio Visibility</h3>
+      <h3> Portfolio Visibility</h3>
       <p>Tracks 20 AI use cases across 8 business units through a 6-stage delivery pipeline — Intake → Scoping → Development → Validation → Staging → Production — with SLA targets and breach detection at every stage.</p>
     </td>
     <td width="50%" valign="top">
-      <h3>🏛️ Governance Tracking</h3>
+      <h3> Governance Tracking</h3>
       <p>Records governance reviews against a 4-tier risk framework (T1 Critical → T4 Low). Derives <code>gate_status</code> (Clear / Blocked) automatically from review outcomes. Surfaces overdue reviews and critical findings.</p>
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h3>🤖 Model Health Monitor</h3>
+      <h3> Model Health Monitor</h3>
       <p>Classifies each model into <strong>Healthy · Monitor · At Risk · Degraded</strong> based on performance score, drift signal, and bias assessment. 12 months of monthly monitoring history per production model.</p>
     </td>
     <td width="50%" valign="top">
-      <h3>💰 Value Realization</h3>
+      <h3> Value Realization</h3>
       <p>Captures quarterly financial and operational metrics (baseline → target → realized) with confidence levels and validation status. Aggregated to business unit in the executive view.</p>
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h3>✅ Data Quality</h3>
+      <h3> Data Quality</h3>
       <p>24 DQ assertions and 16 reconciliation checks write results to an <code>audit</code> schema. A Python CLI runner exits non-zero on failure — CI-compatible out of the box.</p>
     </td>
     <td width="50%" valign="top">
-      <h3>📱 React Dashboard</h3>
-      <p>Five-tab dashboard (Executive Overview, Portfolio, Model Health, SLA Compliance, Governance) reads static JSON exports — no live DB connection required at runtime.</p>
+      <h3> React Dashboard</h3>
+      <p>Six-tab dashboard (Executive Overview, Portfolio, Model Health, SLA Compliance, Governance, Business Partner Portfolio) reads static JSON exports — no live DB connection required at runtime.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" valign="top" colspan="2">
+      <h3> Data &amp; AI Business Partner Operating Model</h3>
+      <p>Models the advisory lifecycle a Data &amp; AI Business Partner runs before a use case enters formal delivery: business problem intake, value hypothesis, feasibility assessment, organizational readiness scoring, risk and governance triage, roadmap prioritization, delivery handoff, and value realization review. Covers 14 synthetic initiatives across Finance, Operations, Commercial, HR, Supply Chain, and Customer Service.</p>
     </td>
   </tr>
 </table>
@@ -72,7 +79,89 @@ Large enterprises running multiple AI initiatives in parallel face three compoun
 2. **Governance gaps** — risk reviews happen asynchronously, conditions go untracked, and high-risk models reach production without a clear gate clearance record.
 3. **Value leakage** — financial and operational benefits are claimed at deployment but rarely measured consistently over time.
 
-This platform simulates the operational data layer that would address all three: a governed, auditable record of delivery, model risk, and realized value — structured for analytics consumption.
+This platform simulates the operational data layer that would address all three: a governed, auditable record of delivery, model risk, and realized value, structured for analytics consumption.
+
+---
+
+## Data & AI Business Partner Operating Model
+
+A Data and AI Business Partner operates upstream of formal delivery. Where the delivery governance layer tracks how an initiative moves through the pipeline, the Business Partner layer tracks how an initiative gets to the pipeline in the first place.
+
+This project models both readings of the same lifecycle.
+
+### Business Partner Lifecycle
+
+```
+1. Business Problem Intake
+   A business function surfaces a problem or opportunity. The BP qualifies
+   it: is the problem well-defined? Is there an accountable business owner?
+   Is there a measurable outcome?
+
+2. Value Hypothesis
+   The BP works with the business owner to articulate the specific value
+   claim: what metric improves, by how much, over what time horizon.
+   Estimated value is documented before any technical scoping begins.
+
+3. Feasibility Assessment (score 1-5)
+   Data availability, technical complexity, model interpretability
+   requirements, and build-vs-buy options are assessed. Low feasibility
+   scores (1-2) flag initiatives that need data remediation or descoping
+   before committing to delivery.
+
+4. Organizational Readiness Assessment (score 1-5)
+   Is the business function ready to adopt the output? Scores assess
+   process integration maturity, change management capacity, data
+   literacy of end users, and availability of a business-side owner
+   for post-deployment accountability.
+
+5. Risk and Governance Triage
+   The BP assigns a risk tier (Low / Medium / High / Critical) and
+   identifies the required governance review level before the initiative
+   advances. Initiatives with High or Critical risk and low feasibility
+   are flagged as strategic risks requiring active BP intervention.
+
+6. Roadmap Prioritization
+   The BP recommends a delivery quarter based on estimated value, composite
+   readiness score, strategic alignment, and capacity availability.
+   Initiatives are not committed to the delivery roadmap until a minimum
+   composite readiness score is met.
+
+7. Delivery Handoff
+   Handoff status transitions from Not Ready to Ready when feasibility,
+   org readiness, and governance triage are complete. The BP remains the
+   accountability bridge between the business sponsor and the delivery team.
+
+8. Value Realization Review
+   Post-deployment, the BP holds the business owner accountable to the
+   value hypothesis: was the target metric achieved? Are the gains
+   sustained? Is the model being used as designed?
+
+9. Reuse Opportunity Identification
+   Solution patterns that delivered value in one function are flagged as
+   reuse candidates for adjacent functions facing similar problems.
+   This prevents duplicate build effort and accelerates delivery for
+   lower-complexity applications of proven patterns.
+```
+
+### Business Partner Portfolio View (silver.v_bp_portfolio)
+
+| Field | Description |
+|---|---|
+| `business_function` | One of: Finance, Operations, Commercial, HR, Supply Chain, Customer Service |
+| `business_partner_role` | Named BP role aligned to the business function |
+| `business_problem` | Plain-language problem statement from the business owner |
+| `value_hypothesis` | Specific value claim with metric, baseline, and target |
+| `estimated_value_usd` | Estimated annual value at full deployment |
+| `feasibility_score` | 1 (very low) to 5 (very high) |
+| `organizational_readiness_score` | 1 (not ready) to 5 (fully ready) |
+| `composite_readiness_score` | Average of feasibility and org readiness, rounded to 1 decimal |
+| `risk_tier` | Low / Medium / High / Critical |
+| `recommended_solution_pattern` | Architectural recommendation from BP scoping |
+| `reuse_candidate_flag` | True if the solution pattern is reusable across functions |
+| `delivery_handoff_status` | Not Ready / Ready / In Delivery / Live |
+| `handoff_ready_flag` | True if status is Ready, In Delivery, or Live |
+| `strategic_risk_flag` | True if risk tier is High/Critical AND feasibility score is 2 or below |
+| `success_metric` | Measurable outcome the business owner is accountable for |
 
 ---
 
@@ -135,6 +224,7 @@ Ten views (`stg_*`) sit 1:1 over the raw tables. Transformations: TRIM on all VA
 | `v_model_health` | Model × monitoring date | `health_status`, `breach_severity` |
 | `v_sla_compliance` | 1 row per breach | `days_over_sla`, `breach_severity`, resolution status |
 | `v_executive_delivery` | 1 row per BU | Portfolio, SLA, value, governance, model risk roll-ups |
+| `v_bp_portfolio` | 1 row per BP initiative | `composite_readiness_score`, `handoff_ready_flag`, `strategic_risk_flag` |
 
 ### audit — quality and observability
 
@@ -237,6 +327,7 @@ ai-solution-delivery-control-tower/
 │   ├── audit_tables.sql           # Audit schema (3 tables)
 │   ├── staging_views.sql          # Conformance views (10 views)
 │   ├── silver_views.sql           # Analytical views with business logic (6 views)
+│   ├── bp_portfolio.sql           # BP portfolio table, seed data, and v_bp_portfolio view
 │   ├── data_quality_checks.sql    # 24 DQ assertions → audit.dq_check_results
 │   ├── reconciliation_checks.sql  # 16 layer-to-layer checks → audit.reconciliation_results
 │   └── seed_data.sql              # Deterministic synthetic dataset
@@ -254,6 +345,7 @@ ai-solution-delivery-control-tower/
 │       ├── model_health.json
 │       ├── sla_compliance.json
 │       ├── executive_delivery.json
+│       ├── bp_portfolio.json
 │       ├── audit_dq_results.json
 │       ├── audit_reconciliation.json
 │       └── audit_run_log.json
@@ -261,7 +353,7 @@ ai-solution-delivery-control-tower/
 ├── dashboard/
 │   ├── package.json               # Vite + React + Recharts + Tailwind
 │   └── src/
-│       └── App.jsx                # Five-tab React dashboard
+│       └── App.jsx                # Six-tab React dashboard (incl. Business Partner Portfolio)
 │
 ├── docs/
 │   ├── DATA_CONTRACT.md           # Schema definitions and quality thresholds
@@ -269,8 +361,6 @@ ai-solution-delivery-control-tower/
 │   ├── GOVERNANCE_MODEL.md        # Business logic definitions (health_status, gate_status, etc.)
 │   ├── architecture.md            # Design principles and component map
 │   ├── RUNBOOK.md                 # Setup, refresh, and troubleshooting procedures
-│   ├── resume_translation.md      # Resume bullets and decision rationale
-│   └── interview_talk_track.md    # Structured answers for common interview questions
 │
 ├── .gitignore
 └── README.md

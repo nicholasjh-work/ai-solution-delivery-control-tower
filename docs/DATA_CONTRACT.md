@@ -183,6 +183,29 @@ Views in `silver` join staging tables and apply business logic. See [LINEAGE.md]
 
 Silver views are the **only** approved source for the JSON exports and dashboard.
 
+**v_bp_portfolio** is an additional silver view that reads directly from `raw.dim_bp_portfolio` (no staging layer). It exposes the Business Partner advisory lifecycle fields:
+
+| Column | Type | Notes |
+|---|---|---|
+| bp_id | INT PK | |
+| business_unit | VARCHAR(100) | Full BU name |
+| business_function | VARCHAR(50) | Finance / Operations / Commercial / HR / Supply Chain / Customer Service |
+| business_partner_role | VARCHAR(100) | Named BP role |
+| business_problem | TEXT | Plain-language problem statement |
+| value_hypothesis | TEXT | Specific value claim with metric and target |
+| estimated_value_usd | NUMERIC(15,2) | Estimated annual value at full deployment |
+| feasibility_score | INT | 1 (very low) to 5 (very high); CHECK constraint enforced |
+| organizational_readiness_score | INT | 1 (not ready) to 5 (fully ready); CHECK constraint enforced |
+| risk_tier | VARCHAR(20) | Low / Medium / High / Critical; CHECK constraint enforced |
+| recommended_solution_pattern | VARCHAR(100) | Architectural recommendation |
+| reuse_candidate_flag | BOOLEAN | True if pattern is reusable across functions |
+| delivery_handoff_status | VARCHAR(20) | Not Ready / Ready / In Delivery / Live; CHECK constraint enforced |
+| success_metric | TEXT | Measurable outcome for post-deployment accountability |
+| roadmap_quarter | VARCHAR(10) | Target delivery quarter (e.g. Q2-2024) |
+| composite_readiness_score | NUMERIC | Derived: avg of feasibility and org readiness |
+| handoff_ready_flag | BOOLEAN | Derived: True if status is Ready, In Delivery, or Live |
+| strategic_risk_flag | BOOLEAN | Derived: True if High/Critical risk AND feasibility <= 2 |
+
 ---
 
 ## Quality Thresholds

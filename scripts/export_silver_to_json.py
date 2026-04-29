@@ -38,6 +38,8 @@ EXPORTS = [
      "sla_compliance.json"),
     ("SELECT * FROM silver.v_executive_delivery ORDER BY business_unit",
      "executive_delivery.json"),
+    ("SELECT * FROM silver.v_bp_portfolio       ORDER BY business_function, risk_tier, feasibility_score DESC",
+     "bp_portfolio.json"),
     # Audit tables are part of the allowed export surface
     ("SELECT * FROM audit.run_log               ORDER BY run_timestamp DESC",
      "audit_run_log.json"),

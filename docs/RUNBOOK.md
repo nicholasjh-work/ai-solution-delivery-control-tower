@@ -51,6 +51,9 @@ psql -U your_user -d ai_control_tower -f sql/silver_views.sql
 # 7. Load seed data
 psql -U your_user -d ai_control_tower -f sql/seed_data.sql
 
+# 7b. Load Business Partner portfolio table and view
+psql -U your_user -d ai_control_tower -f sql/bp_portfolio.sql
+
 # 8. Run quality checks (should all pass)
 python scripts/run_quality_checks.py
 
@@ -94,6 +97,29 @@ psql -U your_user -d ai_control_tower -f sql/silver_views.sql
 ```
 
 The DROP/CREATE IF EXISTS pattern at the top of the file handles idempotency.
+
+---
+
+## Refresh Business Partner Portfolio
+
+The BP portfolio table (`raw.dim_bp_portfolio`) and view (`silver.v_bp_portfolio`)
+are managed together in `sql/bp_portfolio.sql`. Re-running the file drops and
+recreates the table (losing existing rows) and recreates the view.
+
+To refresh with updated BP initiative data, edit the INSERT block in
+`sql/bp_portfolio.sql` and re-run:
+
+```bash
+psql -U your_user -d ai_control_tower -f sql/bp_portfolio.sql
+python scripts/export_silver_to_json.py
+```
+
+The export will overwrite `data/silver/bp_portfolio.json`.
+
+Note: `raw.dim_bp_portfolio` is not covered by the existing DQ checks in
+`data_quality_checks.sql` because its integrity is enforced by CHECK constraints
+at the database level rather than post-load assertions. If you add new rows via
+application code rather than the seed file, add corresponding DQ checks.
 
 ---
 
