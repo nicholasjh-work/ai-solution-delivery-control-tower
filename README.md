@@ -1,7 +1,7 @@
 <div align="center">
 
-<img src="assets/nh-logo-dark.svg#gh-light-mode-only" alt="NH" width="80" />
-<img src="assets/nh-logo-light.svg#gh-dark-mode-only" alt="NH" width="80" />
+<img src="assets/nh-logo-light.svg#gh-light-mode-only" alt="NH" width="80" />
+<img src="assets/nh-logo-dark.svg#gh-dark-mode-only" alt="NH" width="80" />
 
 # AI Solution Delivery Control Tower
 
@@ -27,9 +27,9 @@
 
 |  |  |
 | --- | --- |
-| 📊 **Portfolio Visibility**<br>Tracks 20 AI use cases across 8 business units through a 6-stage delivery pipeline — Intake → Scoping → Development → Validation → Staging → Production — with SLA targets and breach detection at every stage. | 🏛️ **Governance Tracking**<br>Records governance reviews against a 4-tier risk framework (T1 Critical → T4 Low). Derives `gate_status` (Clear / Blocked) automatically from review outcomes. Surfaces overdue reviews and critical findings. |
-| 🤖 **Model Health Monitor**<br>Classifies each model into Healthy · Monitor · At Risk · Degraded based on performance score, drift signal, and bias assessment. 12 months of monthly monitoring history per production model. | 💰 **Value Realization**<br>Captures quarterly financial and operational metrics (baseline → target → realized) with confidence levels and validation status. Aggregated to business unit in the executive view. |
-| ✅ **Data Quality**<br>24 DQ assertions and 16 reconciliation checks write results to an `audit` schema. A Python CLI runner exits non-zero on failure — CI-compatible out of the box. | 🤝 **Business Partner Operating Model**<br>Models how a Data & AI Business Partner translates business demand into governed delivery: intake, value hypothesis, feasibility, organizational readiness, risk triage, roadmap, handoff, and value realization across 14 use cases in 6 functions. |
+| **Portfolio Visibility**<br>Tracks 20 AI use cases across 8 business units through a 6-stage delivery pipeline — Intake → Scoping → Development → Validation → Staging → Production — with SLA targets and breach detection at every stage. | **Governance Tracking**<br>Records governance reviews against a 4-tier risk framework (T1 Critical → T4 Low). Derives `gate_status` (Clear / Blocked) automatically from review outcomes. Surfaces overdue reviews and critical findings. |
+| **Model Health Monitor**<br>Classifies each model into Healthy · Monitor · At Risk · Degraded based on performance score, drift signal, and bias assessment. 12 months of monthly monitoring history per production model. | **Value Realization**<br>Captures quarterly financial and operational metrics (baseline → target → realized) with confidence levels and validation status. Aggregated to business unit in the executive view. |
+| **Data Quality**<br>24 DQ assertions and 16 reconciliation checks write results to an `audit` schema. A Python CLI runner exits non-zero on failure — CI-compatible out of the box. | **Business Partner Operating Model**<br>Models how a Data & AI Business Partner translates business demand into governed delivery: intake, value hypothesis, feasibility, organizational readiness, risk triage, roadmap, handoff, and value realization across 14 use cases in 6 functions. |
 
 ---
 
@@ -254,8 +254,8 @@ python scripts/run_quality_checks.py && python scripts/export_silver_to_json.py
 ai-solution-delivery-control-tower/
 │
 ├── assets/
-│   ├── nh-logo-dark.svg           # NH monogram (light mode)
-│   └── nh-logo-light.svg          # NH monogram (dark mode)
+│   ├── nh-logo-dark.svg           # NH monogram (light fill, for dark backgrounds)
+│   └── nh-logo-light.svg          # NH monogram (dark fill, for light backgrounds)
 │
 ├── sql/
 │   ├── create_database.sql        # Database + schema creation
