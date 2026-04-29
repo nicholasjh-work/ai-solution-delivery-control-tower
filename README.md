@@ -1,73 +1,35 @@
-<p align="center">
+<div align="center">
 
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nicholasjh-work/nicholasjh-work/main/nh-logo-light.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/nicholasjh-work/nicholasjh-work/main/nh-logo-dark.svg">
-    <img alt="NH" src="https://raw.githubusercontent.com/nicholasjh-work/nicholasjh-work/main/nh-logo-dark.svg" width="80">
-  </picture>
-</p>
+<img src="assets/nh-logo-dark.svg#gh-light-mode-only" alt="NH" width="80" />
+<img src="assets/nh-logo-light.svg#gh-dark-mode-only" alt="NH" width="80" />
 
-<h1 align="center">AI Solution Delivery Control Tower</h1>
-<p align="center"><strong>Enterprise AI portfolio governance — synthetic data · portfolio project</strong></p>
+# AI Solution Delivery Control Tower
 
-<p align="center">
-  <a href="#local-setup"><img src="https://img.shields.io/badge/Demo-Local_Setup-4f46e5?style=for-the-badge&logoColor=white" alt="Demo"></a>
-  <img src="https://img.shields.io/badge/License-MIT-0ea5e9?style=for-the-badge" alt="License">
-  <img src="https://img.shields.io/badge/DQ_Checks-24_Passing-16a34a?style=for-the-badge" alt="DQ Checks">
-  <img src="https://img.shields.io/badge/Silver_Views-7-7c3aed?style=for-the-badge" alt="Silver Views">
-</p>
+**Enterprise AI portfolio governance — synthetic data · portfolio project**
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white" alt="PostgreSQL">
-  <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black" alt="React">
-  <img src="https://img.shields.io/badge/Recharts-22d3ee?style=flat&logoColor=white" alt="Recharts">
-  <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white" alt="Tailwind">
-  <img src="https://img.shields.io/badge/Faker-FF6B35?style=flat&logoColor=white" alt="Faker">
-</p>
+[![Demo](https://img.shields.io/badge/Demo-Local_Setup-4f46e5?style=for-the-badge&logoColor=white)](#local-setup)
+[![License](https://img.shields.io/badge/License-MIT-0ea5e9?style=for-the-badge)](LICENSE)
+[![DQ Checks](https://img.shields.io/badge/DQ_Checks-24_Passing-16a34a?style=for-the-badge)](sql/data_quality_checks.sql)
+[![Silver Views](https://img.shields.io/badge/Silver_Views-7-7c3aed?style=for-the-badge)](sql/silver_views.sql)
+
+[![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)](#)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white)](#)
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black)](#)
+[![Recharts](https://img.shields.io/badge/Recharts-22d3ee?style=flat&logoColor=white)](#)
+[![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white)](#)
+[![Faker](https://img.shields.io/badge/Faker-FF6B35?style=flat&logoColor=white)](#)
+
+</div>
 
 ---
 
 ## What This Does
 
-<table>
-  <tr>
-    <td width="50%" valign="top">
-      <h3> Portfolio Visibility</h3>
-      <p>Tracks 20 AI use cases across 8 business units through a 6-stage delivery pipeline — Intake → Scoping → Development → Validation → Staging → Production — with SLA targets and breach detection at every stage.</p>
-    </td>
-    <td width="50%" valign="top">
-      <h3> Governance Tracking</h3>
-      <p>Records governance reviews against a 4-tier risk framework (T1 Critical → T4 Low). Derives <code>gate_status</code> (Clear / Blocked) automatically from review outcomes. Surfaces overdue reviews and critical findings.</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top">
-      <h3> Model Health Monitor</h3>
-      <p>Classifies each model into <strong>Healthy · Monitor · At Risk · Degraded</strong> based on performance score, drift signal, and bias assessment. 12 months of monthly monitoring history per production model.</p>
-    </td>
-    <td width="50%" valign="top">
-      <h3> Value Realization</h3>
-      <p>Captures quarterly financial and operational metrics (baseline → target → realized) with confidence levels and validation status. Aggregated to business unit in the executive view.</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top">
-      <h3> Data Quality</h3>
-      <p>24 DQ assertions and 16 reconciliation checks write results to an <code>audit</code> schema. A Python CLI runner exits non-zero on failure — CI-compatible out of the box.</p>
-    </td>
-    <td width="50%" valign="top">
-      <h3> React Dashboard</h3>
-      <p>Six-tab dashboard (Executive Overview, Portfolio, Model Health, SLA Compliance, Governance, Business Partner Portfolio) reads static JSON exports — no live DB connection required at runtime.</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="100%" valign="top" colspan="2">
-      <h3> Data &amp; AI Business Partner Operating Model</h3>
-      <p>Models the advisory lifecycle a Data &amp; AI Business Partner runs before a use case enters formal delivery: business problem intake, value hypothesis, feasibility assessment, organizational readiness scoring, risk and governance triage, roadmap prioritization, delivery handoff, and value realization review. Covers 14 synthetic initiatives across Finance, Operations, Commercial, HR, Supply Chain, and Customer Service.</p>
-    </td>
-  </tr>
-</table>
+|  |  |
+| --- | --- |
+| 📊 **Portfolio Visibility**<br>Tracks 20 AI use cases across 8 business units through a 6-stage delivery pipeline — Intake → Scoping → Development → Validation → Staging → Production — with SLA targets and breach detection at every stage. | 🏛️ **Governance Tracking**<br>Records governance reviews against a 4-tier risk framework (T1 Critical → T4 Low). Derives `gate_status` (Clear / Blocked) automatically from review outcomes. Surfaces overdue reviews and critical findings. |
+| 🤖 **Model Health Monitor**<br>Classifies each model into Healthy · Monitor · At Risk · Degraded based on performance score, drift signal, and bias assessment. 12 months of monthly monitoring history per production model. | 💰 **Value Realization**<br>Captures quarterly financial and operational metrics (baseline → target → realized) with confidence levels and validation status. Aggregated to business unit in the executive view. |
+| ✅ **Data Quality**<br>24 DQ assertions and 16 reconciliation checks write results to an `audit` schema. A Python CLI runner exits non-zero on failure — CI-compatible out of the box. | 🤝 **Business Partner Operating Model**<br>Models how a Data & AI Business Partner translates business demand into governed delivery: intake, value hypothesis, feasibility, organizational readiness, risk triage, roadmap, handoff, and value realization across 14 use cases in 6 functions. |
 
 ---
 
@@ -79,89 +41,7 @@ Large enterprises running multiple AI initiatives in parallel face three compoun
 2. **Governance gaps** — risk reviews happen asynchronously, conditions go untracked, and high-risk models reach production without a clear gate clearance record.
 3. **Value leakage** — financial and operational benefits are claimed at deployment but rarely measured consistently over time.
 
-This platform simulates the operational data layer that would address all three: a governed, auditable record of delivery, model risk, and realized value, structured for analytics consumption.
-
----
-
-## Data & AI Business Partner Operating Model
-
-A Data and AI Business Partner operates upstream of formal delivery. Where the delivery governance layer tracks how an initiative moves through the pipeline, the Business Partner layer tracks how an initiative gets to the pipeline in the first place.
-
-This project models both readings of the same lifecycle.
-
-### Business Partner Lifecycle
-
-```
-1. Business Problem Intake
-   A business function surfaces a problem or opportunity. The BP qualifies
-   it: is the problem well-defined? Is there an accountable business owner?
-   Is there a measurable outcome?
-
-2. Value Hypothesis
-   The BP works with the business owner to articulate the specific value
-   claim: what metric improves, by how much, over what time horizon.
-   Estimated value is documented before any technical scoping begins.
-
-3. Feasibility Assessment (score 1-5)
-   Data availability, technical complexity, model interpretability
-   requirements, and build-vs-buy options are assessed. Low feasibility
-   scores (1-2) flag initiatives that need data remediation or descoping
-   before committing to delivery.
-
-4. Organizational Readiness Assessment (score 1-5)
-   Is the business function ready to adopt the output? Scores assess
-   process integration maturity, change management capacity, data
-   literacy of end users, and availability of a business-side owner
-   for post-deployment accountability.
-
-5. Risk and Governance Triage
-   The BP assigns a risk tier (Low / Medium / High / Critical) and
-   identifies the required governance review level before the initiative
-   advances. Initiatives with High or Critical risk and low feasibility
-   are flagged as strategic risks requiring active BP intervention.
-
-6. Roadmap Prioritization
-   The BP recommends a delivery quarter based on estimated value, composite
-   readiness score, strategic alignment, and capacity availability.
-   Initiatives are not committed to the delivery roadmap until a minimum
-   composite readiness score is met.
-
-7. Delivery Handoff
-   Handoff status transitions from Not Ready to Ready when feasibility,
-   org readiness, and governance triage are complete. The BP remains the
-   accountability bridge between the business sponsor and the delivery team.
-
-8. Value Realization Review
-   Post-deployment, the BP holds the business owner accountable to the
-   value hypothesis: was the target metric achieved? Are the gains
-   sustained? Is the model being used as designed?
-
-9. Reuse Opportunity Identification
-   Solution patterns that delivered value in one function are flagged as
-   reuse candidates for adjacent functions facing similar problems.
-   This prevents duplicate build effort and accelerates delivery for
-   lower-complexity applications of proven patterns.
-```
-
-### Business Partner Portfolio View (silver.v_bp_portfolio)
-
-| Field | Description |
-|---|---|
-| `business_function` | One of: Finance, Operations, Commercial, HR, Supply Chain, Customer Service |
-| `business_partner_role` | Named BP role aligned to the business function |
-| `business_problem` | Plain-language problem statement from the business owner |
-| `value_hypothesis` | Specific value claim with metric, baseline, and target |
-| `estimated_value_usd` | Estimated annual value at full deployment |
-| `feasibility_score` | 1 (very low) to 5 (very high) |
-| `organizational_readiness_score` | 1 (not ready) to 5 (fully ready) |
-| `composite_readiness_score` | Average of feasibility and org readiness, rounded to 1 decimal |
-| `risk_tier` | Low / Medium / High / Critical |
-| `recommended_solution_pattern` | Architectural recommendation from BP scoping |
-| `reuse_candidate_flag` | True if the solution pattern is reusable across functions |
-| `delivery_handoff_status` | Not Ready / Ready / In Delivery / Live |
-| `handoff_ready_flag` | True if status is Ready, In Delivery, or Live |
-| `strategic_risk_flag` | True if risk tier is High/Critical AND feasibility score is 2 or below |
-| `success_metric` | Measurable outcome the business owner is accountable for |
+This platform simulates the operational data layer that would address all three: a governed, auditable record of delivery, model risk, business partner demand, and realized value — structured for analytics consumption.
 
 ---
 
@@ -178,7 +58,8 @@ staging schema      ← Conformance views (1:1 over raw). TRIM, COALESCE,
   │                    type casts, enum normalisation. Row counts = raw.
   ▼
 silver schema       ← Analytical views. Multi-table joins + business logic
-  │                    derivations (health_status, gate_status, days_over_sla).
+  │                    derivations (health_status, gate_status, days_over_sla,
+  │                    composite_readiness_score, handoff_ready_flag).
   │
   ├──▶ audit schema ← DQ assertions + reconciliation results persisted here.
   │
@@ -198,17 +79,18 @@ Quality checks run between export steps. `scripts/run_quality_checks.py` execute
 ### raw — source system simulation
 
 | Table | Rows | Description |
-|---|---|---|
-| `dim_business_unit` | 8 | Business units with division and region |
-| `dim_ai_use_case` | 20 | AI initiatives with type, priority, current stage |
-| `dim_risk_tier` | 4 | T1 Critical → T4 Low governance tiers |
-| `dim_model` | 20 | ML models with framework, version, bias and drift signals |
-| `dim_owner` | 16 | Delivery owners and reviewers |
-| `fact_ai_delivery_stage` | 94 | One row per use case per pipeline stage |
-| `fact_model_monitoring` | 104 | Monthly model performance metrics |
-| `fact_value_realization` | 28 | Quarterly financial and operational metrics |
-| `fact_sla_breach` | 10 | Breached stages with reasons and escalation status |
-| `fact_governance_review` | 29 | Risk reviews with outcomes and conditions |
+| --- | :---: | --- |
+| ![dim_business_unit](https://img.shields.io/badge/dim__business__unit-1f2937?style=flat) | `8` | Business units with division and region |
+| ![dim_ai_use_case](https://img.shields.io/badge/dim__ai__use__case-1f2937?style=flat) | `20` | AI initiatives with type, priority, current stage |
+| ![dim_risk_tier](https://img.shields.io/badge/dim__risk__tier-1f2937?style=flat) | `4` | T1 Critical → T4 Low governance tiers |
+| ![dim_model](https://img.shields.io/badge/dim__model-1f2937?style=flat) | `20` | ML models with framework, version, bias and drift signals |
+| ![dim_owner](https://img.shields.io/badge/dim__owner-1f2937?style=flat) | `16` | Delivery owners and reviewers |
+| ![dim_bp_portfolio](https://img.shields.io/badge/dim__bp__portfolio-1f2937?style=flat) | `14` | Business Partner portfolio of AI initiatives |
+| ![fact_ai_delivery_stage](https://img.shields.io/badge/fact__ai__delivery__stage-1f2937?style=flat) | `94` | One row per use case per pipeline stage |
+| ![fact_model_monitoring](https://img.shields.io/badge/fact__model__monitoring-1f2937?style=flat) | `104` | Monthly model performance metrics |
+| ![fact_value_realization](https://img.shields.io/badge/fact__value__realization-1f2937?style=flat) | `28` | Quarterly financial and operational metrics |
+| ![fact_sla_breach](https://img.shields.io/badge/fact__sla__breach-1f2937?style=flat) | `10` | Breached stages with reasons and escalation status |
+| ![fact_governance_review](https://img.shields.io/badge/fact__governance__review-1f2937?style=flat) | `29` | Risk reviews with outcomes and conditions |
 
 ### staging — conformance views
 
@@ -217,48 +99,97 @@ Ten views (`stg_*`) sit 1:1 over the raw tables. Transformations: TRIM on all VA
 ### silver — analytical views
 
 | View | Grain | Key Derivations |
-|---|---|---|
-| `v_portfolio_summary` | 1 row per use case | `gate_status`, `days_over_sla`, latest stage + review |
-| `v_intake_metrics` | Stage × BU × priority | `sla_breach_pct`, `avg_days_over_sla` |
-| `v_governance_status` | 1 row per review | `gate_status` per review, reviewer context |
-| `v_model_health` | Model × monitoring date | `health_status`, `breach_severity` |
-| `v_sla_compliance` | 1 row per breach | `days_over_sla`, `breach_severity`, resolution status |
-| `v_executive_delivery` | 1 row per BU | Portfolio, SLA, value, governance, model risk roll-ups |
-| `v_bp_portfolio` | 1 row per BP initiative | `composite_readiness_score`, `handoff_ready_flag`, `strategic_risk_flag` |
+| --- | --- | --- |
+| ![v_portfolio_summary](https://img.shields.io/badge/v__portfolio__summary-1f2937?style=flat) | 1 row per use case | `gate_status`, `days_over_sla`, latest stage + review |
+| ![v_intake_metrics](https://img.shields.io/badge/v__intake__metrics-1f2937?style=flat) | Stage × BU × priority | `sla_breach_pct`, `avg_days_over_sla` |
+| ![v_governance_status](https://img.shields.io/badge/v__governance__status-1f2937?style=flat) | 1 row per review | `gate_status` per review, reviewer context |
+| ![v_model_health](https://img.shields.io/badge/v__model__health-1f2937?style=flat) | Model × monitoring date | `health_status`, `breach_severity` |
+| ![v_sla_compliance](https://img.shields.io/badge/v__sla__compliance-1f2937?style=flat) | 1 row per breach | `days_over_sla`, `breach_severity`, resolution status |
+| ![v_executive_delivery](https://img.shields.io/badge/v__executive__delivery-1f2937?style=flat) | 1 row per BU | Portfolio, SLA, value, governance, model risk roll-ups |
+| ![v_bp_portfolio](https://img.shields.io/badge/v__bp__portfolio-1f2937?style=flat) | 1 row per BP initiative | `composite_readiness_score`, `handoff_ready_flag`, `strategic_risk_flag` |
 
 ### audit — quality and observability
 
 | Table | Description |
-|---|---|
-| `run_log` | Pipeline execution history |
-| `dq_check_results` | 24 DQ assertions — null, uniqueness, FK, range, business logic |
-| `reconciliation_results` | 16 layer-to-layer row count comparisons (raw → staging → silver) |
+| --- | --- |
+| ![run_log](https://img.shields.io/badge/run__log-1f2937?style=flat) | Pipeline execution history |
+| ![dq_check_results](https://img.shields.io/badge/dq__check__results-1f2937?style=flat) | 24 DQ assertions — null, uniqueness, FK, range, business logic |
+| ![reconciliation_results](https://img.shields.io/badge/reconciliation__results-1f2937?style=flat) | 16 layer-to-layer row count comparisons (raw → staging → silver) |
 
 ---
 
 ## Delivery Lifecycle
 
 | Stage | Sequence | SLA Target | Who Owns |
-|---|---|---|---|
-| Intake | 1 | 14 days | AI Delivery Lead |
-| Scoping | 2 | 21 days | AI Delivery Lead + Product Owner |
-| Development | 3 | 60 days | Data Scientist / ML Engineer |
-| Validation | 4 | 30 days | ML Engineer + Risk |
-| Staging | 5 | 21 days | MLOps / Delivery Manager |
-| Production | 6 | Ongoing | MLOps + Model Owner |
+| --- | :---: | --- | --- |
+| ![Intake](https://img.shields.io/badge/Intake-3b82f6?style=flat-square) | 1 | 14 days | AI Delivery Lead |
+| ![Scoping](https://img.shields.io/badge/Scoping-6366f1?style=flat-square) | 2 | 21 days | AI Delivery Lead + Product Owner |
+| ![Development](https://img.shields.io/badge/Development-8b5cf6?style=flat-square) | 3 | 60 days | Data Scientist / ML Engineer |
+| ![Validation](https://img.shields.io/badge/Validation-d946ef?style=flat-square) | 4 | 30 days | ML Engineer + Risk |
+| ![Staging](https://img.shields.io/badge/Staging-ec4899?style=flat-square) | 5 | 21 days | MLOps / Delivery Manager |
+| ![Production](https://img.shields.io/badge/Production-16a34a?style=flat-square) | 6 | Ongoing | MLOps + Model Owner |
 
 An SLA breach is recorded when `actual_days > sla_target_days` for a completed stage. `is_sla_breached` is flagged on the stage record; a corresponding row is inserted into `fact_sla_breach` with the breach reason and escalation status.
 
 **health_status classification** (applied at model level in `v_model_health`):
 
 | Status | Condition |
-|---|---|
-| At Risk | `drift_status = 'Significant'` OR `bias_assessment IN ('High', 'Review Required')` |
-| Degraded | `performance_score < 0.80` |
-| Healthy | `performance_score >= 0.85` AND `drift_status = 'None'` AND bias not flagged |
-| Monitor | All other combinations |
+| --- | --- |
+| ![Healthy](https://img.shields.io/badge/Healthy-16a34a?style=flat-square) | `performance_score >= 0.85` AND `drift_status = 'None'` AND bias not flagged |
+| ![Monitor](https://img.shields.io/badge/Monitor-3b82f6?style=flat-square) | All other combinations |
+| ![At_Risk](https://img.shields.io/badge/At_Risk-f59e0b?style=flat-square) | `drift_status = 'Significant'` OR `bias_assessment IN ('High', 'Review Required')` |
+| ![Degraded](https://img.shields.io/badge/Degraded-dc2626?style=flat-square) | `performance_score < 0.80` |
+
+**risk_tier classification:**
+
+| Tier | Description |
+| --- | --- |
+| ![T1_Critical](https://img.shields.io/badge/T1_Critical-dc2626?style=flat-square) | Customer-facing decisions, regulatory exposure, financial risk |
+| ![T2_High](https://img.shields.io/badge/T2_High-f59e0b?style=flat-square) | Material business decisions, internal-facing |
+| ![T3_Standard](https://img.shields.io/badge/T3_Standard-eab308?style=flat-square) | Standard analytical and operational use cases |
+| ![T4_Low](https://img.shields.io/badge/T4_Low-64748b?style=flat-square) | Experimentation, internal tooling, low-impact automation |
 
 **gate_status** (use-case level in `v_portfolio_summary`): `Clear` when every governance review for the use case is `Approved`. `Blocked` if any review is `Approved with Conditions`, `Pending`, or `Deferred`.
+
+---
+
+## Data & AI Business Partner Operating Model
+
+The Business Partner Portfolio View models how a senior Data & AI Business Partner translates business demand into governed delivery:
+
+```
+Business problem intake
+  → Value hypothesis
+  → Feasibility assessment
+  → Organizational readiness
+  → Risk and governance triage
+  → Roadmap prioritization
+  → Delivery handoff
+  → Value realization review
+  → Reuse opportunity identification
+```
+
+Each initiative in `silver.v_bp_portfolio` carries the structured fields a Business Partner uses to evaluate, prioritize, and translate AI opportunities. Reuse candidates are flagged for adjacent functions facing similar problems. This prevents duplicate build effort and accelerates delivery for lower-complexity applications of proven patterns.
+
+### Business Partner Portfolio View (silver.v_bp_portfolio)
+
+| Field | Description |
+| --- | --- |
+| `business_function` | One of: Finance, Operations, Commercial, HR, Supply Chain, Customer Service |
+| `business_partner_role` | Named BP role aligned to the business function |
+| `business_problem` | Plain-language problem statement from the business owner |
+| `value_hypothesis` | Specific value claim with metric, baseline, and target |
+| `estimated_value_usd` | Estimated annual value at full deployment |
+| `feasibility_score` | 1 (very low) to 5 (very high) |
+| `organizational_readiness_score` | 1 (not ready) to 5 (fully ready) |
+| `composite_readiness_score` | Average of feasibility and org readiness, rounded to 1 decimal |
+| `risk_tier` | Low / Medium / High / Critical |
+| `recommended_solution_pattern` | Architectural recommendation from BP scoping |
+| `reuse_candidate_flag` | True if the solution pattern is reusable across functions |
+| `delivery_handoff_status` | Not Ready / Ready / In Delivery / Live |
+| `handoff_ready_flag` | True if status is Ready, In Delivery, or Live |
+| `strategic_risk_flag` | True if risk tier is High/Critical AND feasibility score is 2 or below |
+| `success_metric` | Measurable outcome the business owner is accountable for |
 
 ---
 
@@ -274,7 +205,7 @@ Node.js 18+     (dashboard only)
 
 ### Database
 
-```bash
+```
 psql -U postgres -c "CREATE DATABASE ai_control_tower;"
 
 # Create schemas
@@ -290,18 +221,19 @@ psql -U your_user -d ai_control_tower -f sql/audit_tables.sql
 psql -U your_user -d ai_control_tower -f sql/staging_views.sql
 psql -U your_user -d ai_control_tower -f sql/silver_views.sql
 psql -U your_user -d ai_control_tower -f sql/seed_data.sql
+psql -U your_user -d ai_control_tower -f sql/bp_portfolio.sql
 ```
 
 ### Quality Checks + Export
 
-```bash
+```
 python scripts/run_quality_checks.py --verbose   # exits non-zero on failure
 python scripts/export_silver_to_json.py          # writes data/silver/*.json
 ```
 
 ### Dashboard
 
-```bash
+```
 cd dashboard
 npm install
 npm run dev       # http://localhost:5173
@@ -309,7 +241,7 @@ npm run dev       # http://localhost:5173
 
 ### Regenerate Synthetic Data
 
-```bash
+```
 python scripts/generate_synthetic_data.py --reset --use-cases 40 --months 18
 python scripts/run_quality_checks.py && python scripts/export_silver_to_json.py
 ```
@@ -320,6 +252,10 @@ python scripts/run_quality_checks.py && python scripts/export_silver_to_json.py
 
 ```
 ai-solution-delivery-control-tower/
+│
+├── assets/
+│   ├── nh-logo-dark.svg           # NH monogram (light mode)
+│   └── nh-logo-light.svg          # NH monogram (dark mode)
 │
 ├── sql/
 │   ├── create_database.sql        # Database + schema creation
@@ -361,6 +297,7 @@ ai-solution-delivery-control-tower/
 │   ├── GOVERNANCE_MODEL.md        # Business logic definitions (health_status, gate_status, etc.)
 │   ├── architecture.md            # Design principles and component map
 │   ├── RUNBOOK.md                 # Setup, refresh, and troubleshooting procedures
+│   └── screenshots/               # Dashboard screenshots
 │
 ├── .gitignore
 └── README.md
@@ -397,10 +334,10 @@ The layered schema design, data contract documentation, and audit framework in t
 
 ---
 
-<p align="center">
-  <a href="https://linkedin.com/in/nicholashidalgo"><img src="https://img.shields.io/badge/LinkedIn-Nicholas_Hidalgo-0a66c2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
-  &nbsp;
-  <a href="https://nicholashidalgo.com"><img src="https://img.shields.io/badge/Website-nicholashidalgo.com-4f46e5?style=for-the-badge&logoColor=white" alt="Website"></a>
-  &nbsp;
-  <a href="mailto:analytics@nicholashidalgo.com"><img src="https://img.shields.io/badge/Email-analytics@nicholashidalgo.com-16a34a?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
-</p>
+<div align="center">
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Nicholas_Hidalgo-0a66c2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/nicholashidalgo)
+[![Website](https://img.shields.io/badge/Website-nicholashidalgo.com-4f46e5?style=for-the-badge&logoColor=white)](https://nicholashidalgo.com)
+[![Email](https://img.shields.io/badge/Email-analytics@nicholashidalgo.com-16a34a?style=for-the-badge&logo=gmail&logoColor=white)](mailto:analytics@nicholashidalgo.com)
+
+</div>
